@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body>
+
+	<ui:composition template="/WEB-INF/template/template.xhtml">
+		<ui:define name="content">
+			<h:form id="form1">
+		
+				<p:growl id="growl" showDetail="true" sticky="true" />	
+		
+				<p:panel header="Commander" toggleable="true"
+					toggleSpeed="500" style="margin-bottom:20px">
+					
+					<h2>#{beanProduit.selectedProd.nomP}</h2>
+		
+					<p:panelGrid columns="2">
+						
+						<p:outputLabel value="Entrer la quantité de votre commande : " for="qnt" />
+						<p:inputNumber value="#{beanCommande.newCommande.qteCmd}" minValue="1" id="qnt" required="true" requiredMessage="La quantité ne peux pas etre vide" />
+		
+						<p:commandButton value="Enregistrer" action="#{beanCommande.commander(beanUsers.loginUser, beanProduit.selectedProd)}" update=":form1" icon="pi pi-shopping-cart"/>
+		
+					</p:panelGrid>
+				</p:panel>
+			</h:form>
+		
+
+		</ui:define>
+	</ui:composition>
+	
+</body> 
+</html>

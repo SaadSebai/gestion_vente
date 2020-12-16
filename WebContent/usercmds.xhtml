@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+<title>List des Commandes</title>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+</h:head> 
+<body>
+	<ui:composition template="/WEB-INF/template/template.xhtml">
+		<ui:define name="content">
+		
+			<h:form id="form1">
+				<p:panel header="Liste des Commandes" toggleable="true" toggleSpeed="500" style="margin-bottom:20px">
+					<p:dataTable value="#{beanCommande.getCmdsOfUser(beanUsers.loginUser.login)}" var="p" paginator="true"
+						rows="10" id="tableprds" widgetVar="tableprds" emptyMessage="No commande existe" filteredValue="#{beanCommande.filtredcmds}"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+						>
+						
+						<f:facet name="{Exporters}">
+				            <div style="float:right;padding-top: 5px;">
+				 
+				                <h:commandLink>
+				                	<img src="resources/pdf.png" width="24" />
+				                    <p:dataExporter type="pdf" target="tableprds" fileName="commandes"/>
+				                </h:commandLink>
+				 
+				                <h:commandLink>
+				                	<img src="resources/excel.png" width="24" />
+				                    <p:dataExporter type="csv" target="tableprds" fileName="commandes" />
+				                </h:commandLink>
+				                                   
+				            </div>
+				        </f:facet>
+				        <p:column filterBy="#{p.produitsPrix.nomP}" filterMatchMode="contains">
+				        	<f:facet name="header">
+				                <h:outputText value="Nom de produit" />
+				            </f:facet>
+				            <h:outputText value="#{p.produitsPrix.nomP}" />
+				        </p:column>
+				        
+				        <p:column filterBy="#{p.qteCmd}" filterMatchMode="contains">
+				        	<f:facet name="header">
+				                <h:outputText value="Quantité de produit" />
+				            </f:facet>
+				            <h:outputText value="#{p.qteCmd}" />
+				        </p:column>
+				        
+				        <p:column filterBy="#{p.dateCmd}" filterMatchMode="contains">
+				        	<f:facet name="header">
+				                <h:outputText value="La date de commande" />
+				            </f:facet>
+				            <h:outputText value="#{p.dateCmd}" />
+				        </p:column>
+				
+					</p:dataTable>
+				</p:panel>
+				
+			</h:form>
+			
+		</ui:define>
+	</ui:composition>
+</body> 
+</html>

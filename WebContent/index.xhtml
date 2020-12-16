@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Liste des Produits</title>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+</h:head> 
+<body>
+	<ui:composition template="/WEB-INF/template/template.xhtml">
+		<ui:define name="content">
+		
+			<h:form id="form1">
+			
+				<p:growl id="growl" showDetail="true" sticky="true" />	
+				
+				<p:panel header="Liste des produits" toggleable="true" toggleSpeed="500" style="margin-bottom:20px">
+					<p:dataTable value="#{beanProduit.prds}" var="p" rowKey="#{p.codeProduitStock}" paginator="true"
+						rows="10" id="tableprds" widgetVar="tableprds" emptyMessage="Il n'y a pas de produit existe" filteredValue="#{beanProduit.filtredprods}"
+						>
+		
+						<p:column headerText="Code de produit" filterBy="#{p.codeProduitStock}" filterMatchMode="contains">
+							<h:outputText value="#{p.codeProduitStock}" />
+						</p:column>
+		
+						<p:column headerText="Nom de produit" filterBy="#{p.nomProduitVente}" filterMatchMode="contains">
+							<h:outputText value="#{p.nomProduitVente}" />
+						</p:column>
+		
+						<p:column  headerText="Prix de Produit" filterBy="#{p.prixProduiVente}" filterMatchMode="contains">
+							<h:outputText value="#{p.prixProduiVente}" />
+						</p:column>
+		
+						<p:column headerText="Quantité de produit" filterBy="#{p.qteProduitStock}" filterMatchMode="contains">
+							<h:outputText value="#{p.qteProduitStock}" />
+							
+						</p:column>
+						<p:column headerText="Commander le produit">
+							<p:commandButton value="Commander" action="#{beanProduit.commander(p.nomProduitVente)}"  update=":form1"/>
+						</p:column>
+				
+					</p:dataTable>
+				</p:panel>
+				
+			</h:form>
+		
+			
+		</ui:define>
+	</ui:composition>
+</body> 
+</html>

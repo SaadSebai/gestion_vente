@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Modification des information</title>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+</h:head> 
+<body> 
+
+	<ui:composition template="/WEB-INF/template/template.xhtml">
+		<ui:define name="content">
+			<h:form id="form1">
+		
+				<p:growl id="growl" showDetail="true" sticky="true" />	
+		
+				<p:panel header="Inscription" toggleable="true"
+					toggleSpeed="500" style="margin-bottom:20px">
+		
+					<p:panelGrid columns="2">
+						
+						<p:outputLabel value="Mot de pass : " for="password" />
+						<p:password value="#{beanUsers.loginUser.pass}" id="password" required="true" requiredMessage="Mot de pass ne peux pas etre vide" />
+						
+						<p:outputLabel value="Confirmer le mot de passe : " for="passwordC" />
+						<p:password value="#{beanUsers.passConf}" id="passwordC" required="true" requiredMessage="Confirmation de mot de pass ne peux pas etre vide" />
+		
+						<p:commandButton value="Enregistrer" action="#{beanUsers.modifier()}" update=":form1" icon="pi pi-save"/>
+						
+		
+					</p:panelGrid>
+				</p:panel>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body> 
+</html>

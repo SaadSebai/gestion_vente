@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+
+	<ui:composition>
+		<h:form>
+		 
+		    <p:menubar>
+		    
+				<p:menuitem>
+				    <h:link outcome="index">
+				    	<img src="resources/shop.png" style="height: 50px; border-radius: 25px;"/>
+				    </h:link>
+				</p:menuitem>
+		 
+		        <f:facet name="options">
+				  <p:commandButton icon="pi pi-power-off" style="margin-right:20px;margin-top: 3px" title="Icon Only" action="#{beanUsers.goToLogin()}"/>
+		        </f:facet>
+		    </p:menubar>
+		</h:form>
+	</ui:composition>
+	
+</body> 
+</html>

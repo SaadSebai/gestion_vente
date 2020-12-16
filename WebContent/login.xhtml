@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Log-in</title>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+	<style type="text/css">
+		.ui-menubar	{mouseover: #ff0000; background-color: #3399ff;}
+		.ui-state-hover {cursor:hand;}
+		.ui-panel-titlebar	{mouseover: #ff0000; background-color: #3399ff;}
+	</style>
+		
+</h:head> 
+<body> 
+	<p:layoutUnit id="top" position="north" size="80" style="margin-bottom:80px">
+		<h:form>  
+		    <p:growl id="messages"/>
+		 
+		    <p:menubar>
+		    
+				<p:menuitem>
+				    <h:link outcome="login">
+				    	<img src="resources/shop.png" alt="" style="height: 50px; border-radius: 25px;"/>
+				    </h:link>
+				</p:menuitem>
+		 
+		        <f:facet name="options">
+				  <p:commandButton value="Page d'inscription" action="#{beanUsers.goToReg()}" style="margin-top: 3px" />
+		        </f:facet>
+		    </p:menubar>
+		</h:form>
+	</p:layoutUnit>
+	<h:form id="form1">
+	
+
+		<p:growl id="growl" showDetail="true" sticky="true" />	
+
+		<p:panel header="Log-in" toggleable="true" 
+			toggleSpeed="500" style="margin-bottom:20px; width: 700px;  margin: 0 auto;">
+
+			<p:panelGrid id="grid" columns="2" style="margin: 0 auto;">
+
+				<p:outputLabel value="Nom : " for="login" />
+				<p:inputText value="#{beanUsers.loginUser.login}" style="width: 300px" id="login" required="true" requiredMessage="Nom ne peux pas etre vide" />
+				
+				<p:outputLabel value="Mot de pass : " for="password" />
+				<p:password value="#{beanUsers.loginUser.pass}" style="width: 300px" id="password" required="true" requiredMessage="Mot de pass ne peux pas etre vide" />
+
+			</p:panelGrid>
+			
+				<div class="text-center">
+					<p:commandButton value="Log-in" action="#{beanUsers.login()}" icon="pi pi-key"  update=":form1" style="margin-top: 20px"/>
+				</div>
+		</p:panel>
+	</h:form>
+</body> 
+</html>

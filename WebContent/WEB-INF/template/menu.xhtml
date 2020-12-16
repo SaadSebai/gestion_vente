@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<ui:composition>
+		<h:form>
+			<p:panelMenu>
+				<p:submenu label="Les listes">
+					<p:menuitem value="Liste des produits" action="index"/>
+					<p:menuitem value="Liste de votre commandes"  action="usercmds" />
+				</p:submenu>
+
+				<p:submenu label="Votre Compte">
+					<p:menuitem value="Modifier votre information" action="editInfo" />
+				</p:submenu>
+				
+			</p:panelMenu>
+		</h:form>
+	</ui:composition>
+</body>
+</html>
